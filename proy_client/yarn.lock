@@ -2340,10 +2340,10 @@ ansi-styles@^5.0.0:
   resolved "https://registry.npmjs.org/ansi-styles/-/ansi-styles-5.2.0.tgz"
   integrity sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==
 
-antd@^4.19.5:
-  version "4.20.0"
-  resolved "https://registry.npmjs.org/antd/-/antd-4.20.0.tgz"
-  integrity sha512-Msowfvabsn/yJIo3qYU0vMqGb31OUylMeFRDilosBViG2AS8R2VB2IX53kbw4kFV3vr7fr2HXcuQkf/FMLU+Dg==
+antd@^4.20.2:
+  version "4.20.2"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-4.20.2.tgz#1ed2042a091eecfebd9650c014a1a2e57430ff2b"
+  integrity sha512-b+Gq1EY8LmcS/ARei/dGI0bWQlJ/j3f3oJ6XjM+ryyT5YWxvf7X3mGc++bTGuLmjn6+/icRL1zItIgcvplcomg==
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@ant-design/icons" "^4.7.0"
@@ -2374,7 +2374,7 @@ antd@^4.19.5:
     rc-progress "~3.2.1"
     rc-rate "~2.9.0"
     rc-resize-observer "^1.2.0"
-    rc-segmented "~2.0.0"
+    rc-segmented "~2.1.0 "
     rc-select "~14.1.1"
     rc-slider "~10.0.0"
     rc-steps "~4.1.0"
@@ -7255,10 +7255,10 @@ rc-resize-observer@^1.0.0, rc-resize-observer@^1.1.0, rc-resize-observer@^1.2.0:
     rc-util "^5.15.0"
     resize-observer-polyfill "^1.5.1"
 
-rc-segmented@~2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/rc-segmented/-/rc-segmented-2.0.0.tgz"
-  integrity sha512-YsdS+aP7E6ZMEY35WSlewJIsrjPbBSP4X/7RvZtzLExKDZwFvXdCPCbWFVDNks4jOYY9TUPYt7qlVifEu9/zXA==
+"rc-segmented@~2.1.0 ":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/rc-segmented/-/rc-segmented-2.1.0.tgz#0e0afe646c1a0e44a0e18785f518c42633ec8efc"
+  integrity sha512-hUlonro+pYoZcwrH6Vm56B2ftLfQh046hrwif/VwLIw1j3zGt52p5mREBwmeVzXnSwgnagpOpfafspzs1asjGw==
   dependencies:
     "@babel/runtime" "^7.11.1"
     classnames "^2.2.1"
@@ -7452,12 +7452,12 @@ react-dev-utils@^12.0.1:
     text-table "^0.2.0"
 
 react-dom@^18.1.0-next-bd0813766-20220420:
-  version "18.1.0-next-bd0813766-20220420"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.1.0-next-bd0813766-20220420.tgz#4cbb81f01286af7023756db4f014ae3cfaffe351"
-  integrity sha512-z6tbOI0KV5FUzNAgDvLgsi8FNDaQnUb0C4yeiXS94wVifV93lGNsDG6lLkVhKS0WlQnxe94xEYAyh7h9YGxvfw==
+  version "18.1.0-next-fc47cb1b6-20220404"
+  resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.1.0-next-fc47cb1b6-20220404.tgz"
+  integrity sha512-Tqa+KvPD5jza/6qeb88qbvvPZzxdlf6ypYQCO9+GtT9G6PaGJB3Pbabl1u9GZYwdY7qDgvJ5y0FxHUTvhutLlg==
   dependencies:
     loose-envify "^1.1.0"
-    scheduler "0.22.0-next-bd0813766-20220420"
+    scheduler "0.22.0-next-fc47cb1b6-20220404"
 
 react-error-overlay@^6.0.11:
   version "6.0.11"
@@ -7559,9 +7559,9 @@ react-scripts@5.0.1:
     fsevents "^2.3.2"
 
 react@^18.1.0-next-bd0813766-20220420:
-  version "18.1.0-next-bd0813766-20220420"
-  resolved "https://registry.yarnpkg.com/react/-/react-18.1.0-next-bd0813766-20220420.tgz#0ed4ec257d702123edf46503cf9a622ab206bb9e"
-  integrity sha512-c0mWAGFBMCySdjykTDyT3rt84Gm60JjIj+Rldp8fsJ2oreJxCn9MxCOi5RCiy+0oA2Zlg0+cqQYoB33iZYozBA==
+  version "18.1.0"
+  resolved "https://registry.npmjs.org/react/-/react-18.1.0.tgz"
+  integrity sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ==
   dependencies:
     loose-envify "^1.1.0"
 
@@ -7843,10 +7843,10 @@ saxes@^5.0.1:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@0.22.0-next-bd0813766-20220420:
-  version "0.22.0-next-bd0813766-20220420"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.22.0-next-bd0813766-20220420.tgz#09909108dacbe21fb9a29fc651553f8129532294"
-  integrity sha512-JxCbaxw6XCodC7811IAYvPt9Ck7tQPF8wbimXthMIaYf9XZV/gTMOoPNW32X5hOyxbU3Uc+keEbTQAw7BccQ7Q==
+scheduler@0.22.0-next-fc47cb1b6-20220404:
+  version "0.22.0-next-fc47cb1b6-20220404"
+  resolved "https://registry.npmjs.org/scheduler/-/scheduler-0.22.0-next-fc47cb1b6-20220404.tgz"
+  integrity sha512-bYb82V8DQrVWQPQrs93vGyQMH+678OnhvDnXq6iCaP/q7N2wH9VRqg1TLRMUoHrmPdVunvvUDoVeVAGkWYMDUQ==
   dependencies:
     loose-envify "^1.1.0"
 

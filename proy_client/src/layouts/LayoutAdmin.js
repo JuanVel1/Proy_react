@@ -1,48 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import MenuTop from "../components/AdminComponents/Menu/MenuTop";
+import MenuSider from "../components/AdminComponents/MenuSider/MenuSider";
 import { Layout } from "antd";
-import "../scss/index.scss";
+import "./LayoutAdmin.scss";
 
-/*
-Crear 3 cards en el home - modulo 1 2 3 y que renderizen cada modulo - link
-crear un github por client y server
-git ignore con node.js
-*/
-export default function LayoutAdmin(props) {
-  const { children } = props;
+export default function LayoutAdmin() {
+  const [menuCollapsed, setMenuCollapsed] = useState(false);
   const { Header, Content, Footer } = Layout;
   return (
     <Layout>
-      <h2>Menu Sider</h2>
-      <Layout>
-        <Header
-          style={{
-            borderTop: "1px solid #e8e8e8",
-            left: 0,
-            bottom: 0,
-            width: "100%",
-            backgroundColor: "white",
-            textAlign: "center",
-            display: "flex",
-          }}
-        >
-          Header
+      <MenuSider menuCollapsed={menuCollapsed} />
+      <Layout className="layout-admin">
+        <Header className="layout-admin__header">
+          <MenuTop
+            menuCollapsed={menuCollapsed}
+            setMenuCollapsed={setMenuCollapsed}
+          />
         </Header>
-        <Content>{children}</Content>
+        <Content className="layout-admin__content">
+          <h1>Rutas</h1>
+        </Content>
+        <Footer className="layout-admin__footer">
+          MERN React proyect 2022
+        </Footer>
       </Layout>
-      <Footer
-        style={{
-          borderTop: "1px solid #e8e8e8",
-          position: "fixed",
-          left: 0,
-          bottom: 0,
-          width: "100%",
-          backgroundColor: "white",
-          textAlign: "center",
-          display: "flex",
-        }}
-      >
-        React Project 2022
-      </Footer>
     </Layout>
   );
 }

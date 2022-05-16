@@ -6,7 +6,6 @@ import Home from "../pages/Home"
 import Modulo_1 from "../pages/modulo_1"
 import Modulo_2 from "../pages/modulo_2"
 import Modulo_3 from "../pages/modulo_3"
-//import Contact from "../pages/Contact"
 import NotFound from "../pages/NotFound"
 
 

@@ -1,4 +1,5 @@
-const user = {
+const mongoose = require("mongoose")
+const userSchema = mongoose.Schema({
     name:{
         type:String,
         require:true,
@@ -20,7 +21,16 @@ const user = {
     active:{
         type:Boolean,
         require:true,
+    }, 
+    avatar:{
+        type:String,
+        require:true,
+    },
+    role:{
+        type:String,
+        require:true,
     }
 
+})
 
-}
+module.exports = mongoose.model("User",userSchema)
