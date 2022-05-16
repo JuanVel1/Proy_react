@@ -1,7 +1,7 @@
 import LayoutAdmin from "../layouts/LayoutAdmin"
 import LayoutBasic from "../layouts/LayoutBasic"
 import AdminHome from "../pages/Admin"
-import AdminSignIn from "../pages/Admin/SignIn"
+import Login from "../components/AdminComponents/Login/Login"
 import Home from "../pages/Home"
 import Modulo_1 from "../pages/modulo_1"
 import Modulo_2 from "../pages/modulo_2"
@@ -18,14 +18,14 @@ const routesAdmin = [
     {
         path:"/admin/login",
         layout:LayoutAdmin,
-        component:AdminSignIn,
+        component:Login,
     }
 ] 
 
 const routesClient =[
     {
         path:"/",
-        layout:LayoutBasic,
+        layout:LayoutAdmin,
         component:Home,
     },
     {
@@ -48,7 +48,7 @@ const routesClient =[
 const routesNotFound =[
     {
         path:"*",
-        layout:LayoutBasic,
+        layout:LayoutAdmin,
         component:NotFound,
     }
 ]

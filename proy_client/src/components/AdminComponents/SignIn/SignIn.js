@@ -1,6 +1,5 @@
 import { Form, Input, Button, Checkbox, Layout } from "antd";
-import { UserOutlined, MailOutlined } from "@ant-design/icons";
-import "./AdminSignIn.scss";
+import "./SignIn.scss";
 
 export default function AdminSignIn(props) {
   const onFinish = (values) => {
@@ -37,7 +36,7 @@ export default function AdminSignIn(props) {
             },
           ]}
         >
-          Email or Usuario
+          Email
           <Input />
         </Form.Item>
 
@@ -75,12 +74,6 @@ export default function AdminSignIn(props) {
           <Button type="primary" htmlType="submit">
             Ingresar
           </Button>
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-            Registrarse
-          </Button>
-          </Form.Item>
-          
         </Form.Item>
       </Form>
     </Layout>

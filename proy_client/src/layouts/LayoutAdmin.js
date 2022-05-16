@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Layout } from "antd";
 import MenuTop from "../components/AdminComponents/Menu/MenuTop";
 import MenuSider from "../components/AdminComponents/MenuSider/MenuSider";
-import { Layout } from "antd";
+import { GithubOutlined } from "@ant-design/icons";
 import "./LayoutAdmin.scss";
 
-export default function LayoutAdmin() {
+export default function LayoutAdmin(props) {
   const [menuCollapsed, setMenuCollapsed] = useState(false);
   const { Header, Content, Footer } = Layout;
+  const { children } = props;
   return (
     <Layout>
       <MenuSider menuCollapsed={menuCollapsed} />
-      <Layout className="layout-admin">
+      <Layout className="layout-admin" style={{ marginLeft: menuCollapsed ? "80px": "200px" }}>
         <Header className="layout-admin__header">
           <MenuTop
             menuCollapsed={menuCollapsed}
@@ -18,10 +21,10 @@ export default function LayoutAdmin() {
           />
         </Header>
         <Content className="layout-admin__content">
-          <h1>Rutas</h1>
+          {children}
         </Content>
         <Footer className="layout-admin__footer">
-          MERN React proyect 2022
+          <GithubOutlined style={{fontsize : "17px"}}/> Juan
         </Footer>
       </Layout>
     </Layout>

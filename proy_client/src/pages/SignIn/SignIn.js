@@ -5,17 +5,17 @@ export function SignIn() {
     return(
         <Layout>
             <Form>
-                <Form.item 
+                <Form.Item 
                 label="Username"
                 name ="Username"
                 rules={[{required:true, message:"Por favor ingresa tu nombre"}]}
-                ></Form.item>
+                ></Form.Item>
                 <Input />
-                <Form.item 
+                <Form.Item 
                 label="Lastname"
                 name ="Lastname"
                 rules={[{required:true, message:"Por favor ingresa tu apellido"}]}
-                ></Form.item>
+                ></Form.Item>
                 <Input />
             </Form>
 

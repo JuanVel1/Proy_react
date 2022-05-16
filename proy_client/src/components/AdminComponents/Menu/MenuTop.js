@@ -4,7 +4,7 @@ import "./MenuTop.scss";
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  PoweroffOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import Logo from "../../../assets/img/Logo.svg";
 
@@ -21,7 +21,7 @@ export default function Menu(props) {
       </div>
       <div className="menu-top__right">
         <Button type="link" onClick={() => console.log("Log Off!")}>
-          <PoweroffOutlined/>
+          <UserOutlined/>
         </Button>
       </div>
     </div>
