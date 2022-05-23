@@ -1,0 +1,32 @@
+@import "../../../scss/index.scss";
+
+.boton{
+    background-color: transparent;
+    border-radius: 10px;
+    color: $background;
+}
+
+.capa-nuevo{
+    padding: 5%;
+    align-items: center;
+    background: $background-dark;
+    background-image: url("../../../assets/img/svg/Back.svg");
+    background-size: cover;
+    
+}
+
+.check{
+ color: $background;   
+}
+
+.campo .cuadro{
+    border-radius: 15px;
+    margin-top: 12px;
+}
+
+.cuadro{
+    align-items: center;
+    width: 60%;
+    background-color: black;
+    opacity: 90%;
+}

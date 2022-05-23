@@ -1,0 +1,41 @@
+@import "../../../scss/index.scss";
+.ant-layout-content {
+    padding-bottom: 90%;
+}
+
+.menu-tab {
+    z-index: 0;
+    position: inherit;
+    /* width: -webkit-fill-available; */
+    color: #7DE2D1;
+    background-color: #f1feff;
+}
+
+.capa{
+    padding: 2em;
+    background: $background-dark;
+    background-image: url("../../../assets/img/svg/Back.svg");
+    background-size: cover;
+}
+
+.boton{
+    background-color: transparent;
+    border-radius: 10px;
+    color: $background;
+}
+
+.check{
+    color: $background;  
+}
+
+.campo{
+    border-radius: 15px;
+}
+
+.cuadro{
+    align-items: center;
+    width: 60%;
+    background-color: black;
+    opacity: 90%;
+    padding: 5%;
+}

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { Layout } from "antd";
 import MenuTop from "../components/AdminComponents/Menu/MenuTop";
 import MenuSider from "../components/AdminComponents/MenuSider/MenuSider";
@@ -24,7 +23,7 @@ export default function LayoutAdmin(props) {
           {children}
         </Content>
         <Footer className="layout-admin__footer">
-          <GithubOutlined style={{fontsize : "17px"}}/> Juan
+          <a  target="_blank" href="https://github.com/JuanVel1"  rel="noreferrer"><GithubOutlined style={{fontsize : "17px", color:"#61618a"}} /> Juan</a>
         </Footer>
       </Layout>
     </Layout>

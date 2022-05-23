@@ -1,4 +1,5 @@
-/*Se crean 2 componentes login y register con campos mas completos con su index para exportar
-    en pages en admin en signin usando el layout se crea un tabs tabpane 
-    dependiendo de la opcion que se de en el tab se cambia el renderizado
-*/
+@import "../../../scss/index.scss";
+.menu-tab{
+    color:$background-light;
+    background-color: $background;
+}

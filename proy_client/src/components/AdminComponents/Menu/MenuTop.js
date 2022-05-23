@@ -6,7 +6,7 @@ import {
   MenuFoldOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import Logo from "../../../assets/img/Logo.svg";
+import Logo from "../../../assets/img/svg/Logo.svg";
 
 export default function Menu(props) {
   const { menuCollapsed, setMenuCollapsed } = props;

@@ -1,108 +1,207 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Form,Layout, Input, Button, Checkbox, notification } from "antd";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { signUpApi } from "../../../api/user.js";
+import "./Register.scss";
 import {
-  Form,
-  Input,
-  Button,
-  Radio,
-  Select,
-  Cascader,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Switch,
-} from 'antd';
+  emailValidation,
+  minLengthValidation,
+} from "../../../validations/FormValidation";
 
-const Register = () => {
-  const [componentSize, setComponentSize] = useState('default');
+export default function RegisterForm() {
+  const [inputs, setInputs] = useState({
+    name_user: "",
+    lastname: "",
+    email: "",
+    password: "",
+    repeatPassword: "",
+    privacyPolicy: false,
+  });
+  const [formValid, setFormValid] = useState({
+    name_user: false,
+    lastname: false,
+    email: false,
+    password: false,
+    repeatPassword: false,
+    privacyPolicy: false,
+  });
 
-  const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
+  /* Se valida si el usuario checkeo el privacyPolicy */
+  const changeForm = (event) => {
+    if (event.target.name === "privacyPolicy") {
+      setInputs({
+        ...inputs,
+        [event.target.name]: event.target.checked,
+      });
+    } else {
+      setInputs({
+        ...inputs,
+        [event.target.name]: event.target.value,
+      });
+    }
+  };
+
+  const inputValidation = (event) => {
+    const { type, name } = event.target;
+    if (type === "email") {
+      setFormValid({ ...formValid, [name]: emailValidation(event.target) });
+    }
+    if (type === "password") {
+      setFormValid({
+        ...formValid,
+        [name]: minLengthValidation(event.target, 6),
+      });
+    }
+    if (type === "checkbox") {
+      setFormValid({ ...formValid, [name]: event.target.checked });
+    }
+  };
+
+  const register = async (event) => {
+    event.preventDefault();
+    console.log("Estoy en el register");
+    const nameUserVal = inputs.name_user;
+    const lastnameVal = inputs.lastname;
+    const emailVal = inputs.email;
+    const passwordVal = inputs.password;
+    const repeatPasswordVal = inputs.repeatPassword;
+    const privacyPolicyVal = inputs.privacyPolicy;
+    if (
+      !nameUserVal ||
+      !lastnameVal ||
+      !emailVal ||
+      !passwordVal ||
+      !repeatPasswordVal ||
+      !privacyPolicyVal
+    ) {
+      notification["error"]({
+        message: "Todos los campos son obligatorios",
+      });
+    } else {
+      if (passwordVal !== repeatPasswordVal) {
+        notification["error"]({
+          message: "Las contraseñas deben ser iguales",
+        });
+        console.log("Son diferentes");
+      } else {
+        const result = await signUpApi(inputs);
+        console.log(result);
+        if (!result.user) {
+          notification["error"]({
+            message: "Usuario no se ha podido crear ! " + result.message,
+          });
+        } else {
+          notification["success"]({
+            message: "Usuario creado exitosamente ! " + result.message,
+          });
+        }
+        resetForm();
+      }
+    }
+  };
+
+  const resetForm = () => {
+    const inputs = document.getElementsByTagName("input");
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].classList.remove("success");
+      inputs[i].classList.remove("error");
+    }
+    setInputs({
+      name_user: "",
+      lastname: "",
+      email: "",
+      password: "",
+      repeatPassword: "",
+      privacyPolicy: false,
+    });
+
+    setFormValid({
+      name_user: false,
+      lastname: false,
+      email: false,
+      password: false,
+      repeatPassword: false,
+      privacyPolicy: false,
+    });
   };
 
   return (
-    <Form
-      labelCol={{
-        span: 4,
-      }}
-      wrapperCol={{
-        span: 14,
-      }}
-      layout="horizontal"
-      initialValues={{
-        size: componentSize,
-      }}
-      onValuesChange={onFormLayoutChange}
-      size={componentSize}
-    >
-      <Form.Item label="Form Size" name="size">
-        <Radio.Group>
-          <Radio.Button value="small">S</Radio.Button>
-          <Radio.Button value="default">M</Radio.Button>
-          <Radio.Button value="large">L</Radio.Button>
-        </Radio.Group>
-      </Form.Item>
-      <Form.Item label="Nombres">
-        <Input />
-      </Form.Item>
-      <Form.Item label="Apellidos">
-        <Input />
-      </Form.Item>
-      <Form.Item label="email">
-        <Input type={'email'}/>
-      </Form.Item>
-      <Form.Item label="Genero">
-        <Select>
-          <Select.Option value="demo">Hombre</Select.Option>
-          <Select.Option value="demo">Mujer</Select.Option>
-          <Select.Option value="demo">Otro</Select.Option>
-        </Select>
-      </Form.Item>
-      {/* <Form.Item label="TreeSelect">
-        <TreeSelect
-          treeData={[
-            {
-              title: 'Light',
-              value: 'light',
-              children: [
-                {
-                  title: 'Bamboo',
-                  value: 'bamboo',
-                },
-              ],
-            },
-          ]}
-        />
-      </Form.Item> */}
-      {/* <Form.Item label="Cascader">
-        <Cascader
-          options={[
-            {
-              value: 'zhejiang',
-              label: 'Zhejiang',
-              children: [
-                {
-                  value: 'hangzhou',
-                  label: 'Hangzhou',
-                },
-              ],
-            },
-          ]}
-        />
-      </Form.Item> */}
-      <Form.Item label="Fecha de nacimiento">
-        <DatePicker />
-      </Form.Item>
-      {/* <Form.Item label="InputNumber">
-        <InputNumber />
-      </Form.Item> */}
-      <Form.Item label="Tratamiento de datos" valuePropName="checked">
-        <Switch />
-      </Form.Item>
-      <Form.Item label="Registrarse">
-        <Button>Enviar</Button>
-      </Form.Item>
-    </Form>
+    <Layout className="capa-nuevo">
+      <Form className="register-form cuadro" onChange={changeForm}>
+        <Form.Item>
+        <span className="check">Nombres</span>
+          <Input
+            prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+            type="text"
+            name="name_user"
+            placeholder="Nombres"
+            className="register-form__input campo"
+            onChange={inputValidation}
+            value={inputs.name_user}
+          />
+        </Form.Item>
+        <Form.Item>
+        <span className="check">Apellidos</span>
+          <Input
+            prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+            type="text"
+            name="lastname"
+            placeholder="Apellido"
+            className="register-form__input campo"
+            onChange={inputValidation}
+            value={inputs.lastname}
+          />
+        </Form.Item>
+        <Form.Item>
+        <span className="check">Email</span>
+          <Input
+            prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+            type="email"
+            name="email"
+            placeholder="Correo electronico"
+            className="register-form__input campo"
+            onChange={inputValidation}
+            value={inputs.email}
+          />
+        </Form.Item>
+        <Form.Item>
+          <span className="check">Contraseña</span>
+          <Input
+            prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+            type="password"
+            name="password"
+            placeholder="Contraseña"
+            className="register-form__input campo"
+            onChange={inputValidation}
+            value={inputs.password}
+          />
+        </Form.Item>
+        <Form.Item>
+        <span className="check">Repetir contraseña</span>
+          <Input
+            prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+            type="password"
+            name="repeatPassword"
+            placeholder="Repetir contraseña"
+            className="register-form__input campo"
+            onChange={inputValidation}
+            value={inputs.repeatPassword}
+          />
+        </Form.Item>
+        <Form.Item>
+          <Checkbox
+            className="check"
+            name="privacyPolicy"
+            onChange={inputValidation}
+            checked={inputs.privacyPolicy}
+          >
+            He leído y acepto la política de privacidad.
+          </Checkbox>
+        </Form.Item>
+        <Button onClick={register} className="register-form__button boton">
+          Crear cuenta
+        </Button>
+      </Form>
+    </Layout>
   );
-};
-
-export default () => <Register/>;
+}

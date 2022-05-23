@@ -1,4 +1,4 @@
-import {Form, Button, Checkbox, Input, Layout } from "antd";
+import {Form, Input, Layout } from "antd";
 import {UserOutlined, MailOutlined} from "@ant-design/icons"
 
 export function SignIn() {

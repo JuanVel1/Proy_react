@@ -1,22 +1,21 @@
 import LayoutAdmin from "../layouts/LayoutAdmin"
 import LayoutBasic from "../layouts/LayoutBasic"
-import AdminHome from "../pages/Admin"
 import Login from "../components/AdminComponents/Login/Login"
 import Home from "../pages/Home"
 import Modulo_1 from "../pages/modulo_1"
 import Modulo_2 from "../pages/modulo_2"
 import Modulo_3 from "../pages/modulo_3"
 import NotFound from "../pages/NotFound"
-
+import Register from "../components/AdminComponents/Register/Register"
 
 const routesAdmin = [
     {
         path:"/admin",
         layout:LayoutAdmin, 
-        component:AdminHome,
+        component:Register,
     },
     {
-        path:"/admin/login",
+        path:"/admin/login/*",
         layout:LayoutAdmin,
         component:Login,
     }

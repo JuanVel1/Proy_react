@@ -4,15 +4,15 @@
     display: flex;
 
     button{
-        color: $font-grey-dark;
+        color: $font;
         
         &:hover{
-            color: $primary-color;
+            color: $background;
         }
 
         &:focus,
         &:active{
-            color:$font-grey-dark;
+            color:$font;
         }
     }
 

@@ -1,40 +1,12 @@
-$primary-color:#0098d3;
-$defaultFontSize:#0098d3;
-$primary-color-hover:#0280b3;
-
-$menu_color:#252527;
-
-$font-light:#fff;
-$font-grey-light:#e8e8e8;
-$font-grey:#808080;
-$font-grey-dark:#000;
-$font-dark-ligth:#252527;
-$font-dark:#000;
-
-$border-light:#fff;
-$border-grey-light:#e8e8e8;
-$border-grey:#808080;
-$border-grey-dark:#595959;
-$border-dark-light:#252527;
-$border-dark:#000;
-
-$background-light:#fff;
-$background-grey-light:#e8e8e8;
-$background-grey:#808080;
-$background-grey-dark:#595959;
-$background-dark-light:#252527;
-$background-dark:#000;
-
-$success:#84b84c;
-$error:#f00;
-
-$media-breackoint-down-xs:320px;
-$media-breackoint-down-sm:320px;
-$media-breackoint-down-md:320px;
-$media-breackoint-down-log:320px;
-$media-breackoint-down-xl:320px;
-
-
+$font:#131515;
+$background:#f1feff;
+$background-light:#7DE2D1;
+$background-dark:#454641;
+$success:#7de280;
+$error:#d24242;
+$error-light:#f2b4b4;
+$background-success:$success;
+$background-error:#d24242;
 
 .ant-layout-footer {
     width: 100%;
@@ -44,7 +16,7 @@ $media-breackoint-down-xl:320px;
 
 .App {
     h1 {
-        color: $primary-color;
+        color: $font;
     }
 }
 
@@ -52,6 +24,7 @@ $media-breackoint-down-xl:320px;
     align-items: center;
     align-content: center;
     padding-inline: 5%;
+    background-color: $background;
 }
 
 .ant-col-8 {
@@ -63,6 +36,8 @@ $media-breackoint-down-xl:320px;
 
 .root .ant-layout {
     height: 100px;
+    border: 8px;
+    border-color: aqua;
 }
 
 .modulo {
@@ -79,7 +54,7 @@ $media-breackoint-down-xl:320px;
 
 
 body{
-    background-color: #e5efff;
+    background-color: $background;
 
 }
 
@@ -110,8 +85,11 @@ body{
 }
 
 .img {
-    border-radius: 3em;
+    width: 50px;
+    border-radius: 15em;
 }
-.algo{
-    background-color: red;
-}
+
+
+
+
+

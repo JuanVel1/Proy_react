@@ -10,8 +10,8 @@ export default function AdminSignIn(props) {
     console.log("Failed:", errorInfo);
   };
   return (
-    <Layout>
-      <Form
+    <Layout className="capa-nuevo">
+      <Form 
         name="basic"
         labelCol={{
           span: 8,
@@ -25,8 +25,11 @@ export default function AdminSignIn(props) {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        className="cuadro"
       >
         <Form.Item
+          style={{color:"white"}}
+          className="campo"
           label="Username"
           name="username"
           rules={[
@@ -37,21 +40,21 @@ export default function AdminSignIn(props) {
           ]}
         >
           Email
-          <Input />
+          <Input className="campo"/>
         </Form.Item>
 
-        <Form.Item
+        <Form.Item style={{color:"white"}}
           label="Password"
           name="password"
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: "Ingrese su contraseña!",
             },
           ]}
         >
           Contraseña
-          <Input.Password />
+          <Input.Password  className="campo"/>
         </Form.Item>
 
         <Form.Item
@@ -62,16 +65,16 @@ export default function AdminSignIn(props) {
             span: 16,
           }}
         >
-          <Checkbox>Remember me</Checkbox>
+          <Checkbox><span className="check">Remember me</span></Checkbox>
         </Form.Item>
 
         <Form.Item
           wrapperCol={{
             offset: 8,
-            span: 16,
+            span: 12,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button  className="boton" type="ghost" htmlType="submit">
             Ingresar
           </Button>
         </Form.Item>
