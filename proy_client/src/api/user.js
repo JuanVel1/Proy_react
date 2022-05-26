@@ -14,4 +14,22 @@ export function signUpApi(data) {
     return fetch(url, params).then((response)=>{
         return response.json();
     })
+    .then((result)=>{
+        if (result.user) {
+            return{
+                user_creado:true,
+                message:"Usuario creado exitosamente",
+            }
+        }
+        return{
+            user_creado:false,
+            message:result.message,
+        }
+    })
+    .catch((err)=>{
+        return{
+            user_creado:false,
+            message:err.message
+        }
+    })
 }
