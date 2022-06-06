@@ -5,9 +5,11 @@ const {API_VERSION}=require("./config")
 const userRoutes = require("./src/routes/user")
 const cors = require("cors")
 
+
 app.use(bodyparser.urlencoded({extended: false}))
 app.use(bodyparser.json())
 app.use(`/api/${API_VERSION}`, userRoutes)
 app.use(cors)
+app.use
 
 module.exports = app

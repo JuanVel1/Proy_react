@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt-nodejs");
 const User = require("../models/user.model");
-const jwt = require("jwt-simple");
+const jwt = require('../service/jwt');
+
 
 function signUp(req, res) {
   const user = new User();
@@ -42,7 +43,7 @@ function signUp(req, res) {
 const signIn = (req, res) => {
   console.log("Login correcto");
   const params = req.body;
-  const email = params.email.toLowerCase();
+  const email = params.name_user.toLowerCase();
   const password = params.password;
   User.findOne({ email }, (err, userStored) => {
     if (err) {

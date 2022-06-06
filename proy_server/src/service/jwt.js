@@ -10,7 +10,7 @@ exports.createAccessWithToken = (user) => {
     que se incrustan dentro del payload o cuerpo de un mensaje
     firmado digitalmente. */
   const payload = {
-    id: user_id,
+    id: user._id,
     name: user.name,
     Lastname: user.Lastname,
     email: user.email,
@@ -24,7 +24,7 @@ exports.createAccessWithToken = (user) => {
 
 exports.createRefreshToken = (user) => {
   const payload = {
-    id: user_id,
+    id: user._id,
     expiration_date: moment().add(30, "days").unix(),
   };
   return jwt.encode(payload, SECRET_KEY);
