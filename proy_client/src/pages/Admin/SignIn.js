@@ -1,6 +1,8 @@
 import { Form, Input, Button, Checkbox, Layout } from "antd";
-import { UserOutlined, MailOutlined } from "@ant-design/icons";
 import "./AdminSignIn.scss";
+import { getAccessToken } from "../../api/auth";
+import {Route, Routes } from "react-router-dom"
+
 
 export default function AdminSignIn(props) {
   const onFinish = (values) => {
@@ -10,6 +12,16 @@ export default function AdminSignIn(props) {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+  const { Content } = Layout;
+  const { TabPane } = TabPane;
+
+  if (getAccessToken()) {
+    <Routes>
+      <Route path="/admin" />
+    </Routes>;
+  }
+
   return (
     <Layout>
       <Form
@@ -75,12 +87,11 @@ export default function AdminSignIn(props) {
           <Button type="primary" htmlType="submit">
             Ingresar
           </Button>
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-            Registrarse
-          </Button>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Registrarse
+            </Button>
           </Form.Item>
-          
         </Form.Item>
       </Form>
     </Layout>

@@ -18,7 +18,7 @@ export default function MenuSider(props) {
           </Link>
         </Menu.Item>
         <Menu.Item key="2">
-          <Link to={"/admin/menu-web"}>
+          <Link to={"/admin/login"}>
             <AppstoreOutlined />
             <span className="nav-text">Menu Web</span>
           </Link>

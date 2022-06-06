@@ -7,25 +7,34 @@ import {
 } from "../../../validations/FormValidation";
 import { signInApi } from "../../../api/user.js";
 import jwtDecode from "jwt-decode";
-
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../../api/constants";
+import { getAccessToken } from "../../../api/auth";
+import { Route, Routes } from "react-router-dom";
 
 export default function AdminSignIn() {
   const [inputs, setInputs] = useState({
-    name_user: "", 
-    password: ""
+    name_user: "",
+    password: "",
   });
   const [formValid, setFormValid] = useState({
     name_user: false,
-    password: false
+    password: false,
   });
 
-   /* Se valida si el usuario checkeo el privacyPolicy */
-   const changeForm = (event) => {
-      setInputs({
-        ...inputs,
-        [event.target.name]: event.target.value,
-      });
+  /* Se valida si el usuario checkeo el privacyPolicy */
+  const changeForm = (event) => {
+    setInputs({
+      ...inputs,
+      [event.target.name]: event.target.value,
+    });
   };
+
+
+  if (getAccessToken()) {
+    <Routes>
+      <Route path="/admin" />
+    </Routes>;
+  }
 
   const onFinish = (values) => {
     console.log("Success:", values);
@@ -35,7 +44,6 @@ export default function AdminSignIn() {
     console.log("Failed:", errorInfo);
   };
 
-  
   const inputValidation = (event) => {
     const { type, name } = event.target;
     if (type === "email") {
@@ -49,41 +57,41 @@ export default function AdminSignIn() {
     }
   };
 
-  const login = async (event)=>{
+  const login = async (event) => {
     event.preventDefault();
     console.log("Estoy en el login");
     const nameUserVal = inputs.name_user;
     const passwordVal = inputs.password;
-    if (!nameUserVal||!passwordVal) {
+    if (!nameUserVal || !passwordVal) {
       notification["error"]({
         message: "Todos los campos son obligatorios",
       });
-    }else{
+    } else {
       // aqui
       console.log(inputs);
       const result = await signInApi(inputs);
       console.log(result);
-      
 
       if (!result.user_creado) {
         notification["error"]({
           message: "Usuario no se ha podido encontrar ! " + result.message,
         });
       } else {
-        const accessTokenVal = result.token.accessToken
-        const usuario = jwtDecode(accessTokenVal)
+        const accessTokenVal = result.token.accessToken;
+        const refreshTokenVal = result.token.refreshToken;
+        const usuario = jwtDecode(accessTokenVal);
         console.log(usuario);
-        
-        
+        localStorage.setItem(ACCESS_TOKEN, accessTokenVal);
+        localStorage.setItem(REFRESH_TOKEN, refreshTokenVal);
+
         notification["info"]({
           message: "Inicio de sesion exitoso!",
         });
-        
+        resetForm();
       }
-
-      resetForm();
+      window.location.href = "/admin";
     }
-  }
+  };
 
   const resetForm = () => {
     const inputs = document.getElementsByTagName("input");
@@ -93,19 +101,18 @@ export default function AdminSignIn() {
     }
     setInputs({
       name_user: "",
-      password: ""
+      password: "",
     });
 
     setFormValid({
       name_user: false,
-      email: false
+      email: false,
     });
   };
 
-
   return (
     <Layout className="capa-nuevo">
-      <Form 
+      <Form
         onChange={changeForm}
         labelCol={{
           span: 8,
@@ -122,7 +129,7 @@ export default function AdminSignIn() {
         className="cuadro"
       >
         <Form.Item
-          style={{color:"white"}}
+          style={{ color: "white" }}
           className="campo"
           label="name_user"
           rules={[
@@ -133,10 +140,16 @@ export default function AdminSignIn() {
           ]}
         >
           Email
-          <Input name="name_user" className="campo" onChange={inputValidation} value={inputs.name_user}/>
+          <Input
+            name="name_user"
+            className="campo"
+            onChange={inputValidation}
+            value={inputs.name_user}
+          />
         </Form.Item>
 
-        <Form.Item style={{color:"white"}}
+        <Form.Item
+          style={{ color: "white" }}
           label="Password"
           rules={[
             {
@@ -146,7 +159,12 @@ export default function AdminSignIn() {
           ]}
         >
           Contraseña
-          <Input.Password name="password" className="campo" onChange={inputValidation} value={inputs.password}/>
+          <Input.Password
+            name="password"
+            className="campo"
+            onChange={inputValidation}
+            value={inputs.password}
+          />
         </Form.Item>
 
         <Form.Item
@@ -156,7 +174,11 @@ export default function AdminSignIn() {
             span: 16,
           }}
         >
-          <Checkbox><span className="check" name="remember">Remember me</span></Checkbox>
+          <Checkbox>
+            <span className="check" name="remember">
+              Remember me
+            </span>
+          </Checkbox>
         </Form.Item>
 
         <Form.Item
@@ -165,7 +187,12 @@ export default function AdminSignIn() {
             span: 12,
           }}
         >
-          <Button  className="boton" type="ghost" htmlType="submit" onClick={login}>
+          <Button
+            className="boton"
+            type="ghost"
+            htmlType="submit"
+            onClick={login}
+          >
             Ingresar
           </Button>
         </Form.Item>
@@ -173,4 +200,3 @@ export default function AdminSignIn() {
     </Layout>
   );
 }
-

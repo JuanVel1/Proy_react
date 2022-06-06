@@ -17,6 +17,7 @@ export default function LayoutBasic(props) {
           display: "flex",
         }}
       >
+      <Header className="layout-admin__header"></Header>
         Menu
       </Header>
       <Content>{children}</Content>

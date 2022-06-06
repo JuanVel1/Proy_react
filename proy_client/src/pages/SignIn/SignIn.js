@@ -1,7 +1,18 @@
 import {Form, Input, Layout } from "antd";
 import {UserOutlined, MailOutlined} from "@ant-design/icons"
+import { getAccessToken } from "../../api/auth";
+import {Route, Routes } from "react-router-dom"
 
 export function SignIn() {
+    const {Content} = Layout
+    const {TabPane} = TabPane
+
+    if (getAccessToken()) {
+        <Routes>
+            <Route path="/admin"/>
+        </Routes>
+    }
+
     return(
         <Layout>
             <Form>

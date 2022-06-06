@@ -3,12 +3,24 @@ import Register from "../Register/Register"
 import { Tabs } from "antd";
 import Layout from "antd/lib/layout/layout";
 import "./Login.scss"
-const { TabPane } = Tabs;
+import { getAccessToken } from "../../../api/auth";
+import { Route, Routes } from "react-router-dom";
+
 
 
 function callback(key) {
   console.log(key);
 }
+
+const { Content } = Layout;
+const { TabPane } = Tabs;
+
+  if (getAccessToken()) {
+    <Routes>
+      <Route path="/admin" />
+    </Routes>;
+  }
+
 
 export default function Login() {
   return (
