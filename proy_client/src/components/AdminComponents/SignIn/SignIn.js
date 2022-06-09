@@ -29,7 +29,6 @@ export default function AdminSignIn() {
     });
   };
 
-
   if (getAccessToken()) {
     <Routes>
       <Route path="/admin" />
@@ -68,15 +67,13 @@ export default function AdminSignIn() {
       });
     } else {
       // aqui
-      console.log(inputs);
       const result = await signInApi(inputs);
-      console.log(result);
-
       if (!result.user_creado) {
         notification["error"]({
           message: "Usuario no se ha podido encontrar ! " + result.message,
         });
       } else {
+        console.log(result);
         const accessTokenVal = result.token.accessToken;
         const refreshTokenVal = result.token.refreshToken;
         const usuario = jwtDecode(accessTokenVal);

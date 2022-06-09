@@ -1,30 +1,31 @@
 export function minLengthValidation(inputData, minLength) {
-    const {value }=minLength
-    removeClassErrorSuccess(inputData)
-    if(value.length>=minLength){
-        inputData.classList.add("success")
-        return true
-    }else{
-        inputData.classList.add("error")
-        return true
-    }
+  const { value } = minLength;
+  removeClassErrorSuccess(inputData);
+  if (value.length >= minLength) {
+    inputData.classList.add("success");
+    return true;
+  } else {
+    inputData.classList.add("error");
+    return true;
+  }
 }
 
 export function removeClassErrorSuccess(inputData) {
-    inputData.classList.remove("success")
-    inputData.classList.remove("error")
+  inputData.classList.remove("success");
+  inputData.classList.remove("error");
 }
-export function emailValidation (inputData) {
-    // eslint-disable-next-Line no-useless-escape
-    const emailValid = /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/
-    const { value } = inputData;
-    removeClassErrorSuccess (inputData);
-    const resultValidation = emailValid.test(value);
-    if (resultValidation) {
+export function emailValidation(inputData) {
+  // eslint-disable-next-Line no-useless-escape
+  const emailValid =
+    /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/;
+  const { value } = inputData;
+  removeClassErrorSuccess(inputData);
+  const resultValidation = emailValid.test(value);
+  if (resultValidation) {
     inputData.classList.add("success");
     return true;
-    } else {
+  } else {
     inputData.classList.add("error");
     return false;
-    }
+  }
 }

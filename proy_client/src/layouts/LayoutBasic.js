@@ -1,39 +1,22 @@
 import React from "react";
 import { Layout } from "antd";
+import MenuTop from "../components/AdminComponents/Menu/MenuTop";
+import { GithubOutlined } from "@ant-design/icons";
 
 export default function LayoutBasic(props) {
   const { children } = props;
   const { Header, Content, Footer } = Layout;
   return (
     <Layout>
-      <Header
-        style={{
-          borderTop: "1px solid #e8e8e8",
-          left: 0,
-          bottom: 0,
-          width: "100%",
-          backgroundColor: "white",
-          textAlign: "center",
-          display: "flex",
-        }}
-      >
-      <Header className="layout-admin__header"></Header>
-        Menu
+      <Header className="layout-admin__header">
+        <MenuTop />
       </Header>
       <Content>{children}</Content>
-      <Footer
-        style={{
-          borderTop: "1px solid #e8e8e8",
-          position: "fixed",
-          left: 0,
-          bottom: 0,
-          width: "100%",
-          backgroundColor: "white",
-          textAlign: "center",
-          display: "flex",
-        }}
-      >
-        React Project 2022
+      React Project 2022
+      <Footer className="layout-admin__footer">
+        <a target="_blank" href="https://github.com/JuanVel1" rel="noreferrer">
+          <GithubOutlined style={{ fontsize: "17px", color: "#61618a" }} /> Juan
+        </a>
       </Footer>
     </Layout>
   );

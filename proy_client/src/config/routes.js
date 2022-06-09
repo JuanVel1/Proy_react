@@ -6,6 +6,7 @@ import Modulo_1 from "../pages/modulo_1"
 import Modulo_2 from "../pages/modulo_2"
 import Modulo_3 from "../pages/modulo_3"
 import NotFound from "../pages/NotFound"
+import Register from "../components/AdminComponents/Register/Register"
 
 const routesAdmin = [
     {
@@ -46,7 +47,7 @@ const routesClient =[
 const routesNotFound =[
     {
         path:"*",
-        layout:LayoutAdmin,
+        layout:LayoutBasic,
         component:NotFound,
     }
 ]
