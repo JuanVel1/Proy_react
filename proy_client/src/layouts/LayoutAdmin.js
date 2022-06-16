@@ -17,7 +17,9 @@ export default function LayoutAdmin(props) {
   const refreshToken = getRefreshToken();
   const accessToken = getAccessToken();
 
-  if (!user && !isLoading) {// === None, son equivalentes
+  if (!user && !isLoading) {
+    console.log(user);// === None, son equivalentes
+    console.log(isLoading);// === None, son equivalentes
     return (
       <>
         <AdminSignIn>

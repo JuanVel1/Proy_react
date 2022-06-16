@@ -15,7 +15,7 @@ export default function Menu(props) {
   const userLogout = () => {
     console.log("Cerrando sesion");
     Logout();
-    window.Location.reload();
+    window.location.reload();
   };
   return (
     <div className="menu-top">

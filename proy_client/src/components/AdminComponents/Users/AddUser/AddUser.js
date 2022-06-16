@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Form, Input, Select, Row, Col, notification, Button } from "antd";
-import {} from "@ant-design/icons";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { signInApi } from "../../../../api/user";
 import { getAccessToken } from "../../../../api/auth";
 import "./AddUser.scss";
 import { message } from "antd";
+
 export default function EditUser(props) {
   const { setVisibleModal, setReloadUser } = props;
   const [userData, setUserData] = useState({});
@@ -58,5 +59,65 @@ const AddForm = (props) => {
   const { userData, setUserData, addUser } = props;
   const { Option } = Select; //trabajar con un select o lista desplegable
   //crear el formulario completo
-  return <Form onSubmit={NaN}></Form>;
+  return (
+    <Form onSubmit={NaN}>
+      <Form.Item>
+        <span className="check">Nombres</span>
+        <Input
+          prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+          type="text"
+          name="name_user"
+          placeholder="Nombres"
+          className="register-form__input campo"
+        />
+      </Form.Item>
+      <Form.Item>
+        <span className="check">Apellidos</span>
+        <Input
+          prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+          type="text"
+          name="lastname"
+          placeholder="Apellido"
+          className="register-form__input campo"
+        />
+      </Form.Item>
+      <Form.Item>
+        <span className="check">Email</span>
+        <Input
+          prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+          type="email"
+          name="email"
+          placeholder="Correo electronico"
+          className="register-form__input campo"
+        />
+      </Form.Item>
+      <Form.Item>
+        <span className="check">Contraseña</span>
+        <Input
+          prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          className="register-form__input campo"
+        />
+      </Form.Item>
+      <Form.Item>
+        <span className="check">Repetir contraseña</span>
+        <Input
+          prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
+          type="password"
+          name="repeatPassword"
+          placeholder="Repetir contraseña"
+          className="register-form__input campo"
+        />
+      </Form.Item>
+      <Form.Item label="Select" name={"rol"}>
+        <Select>
+          <Select.Option value="administrador">Administrador</Select.Option>
+          <Select.Option value="usuario">Usuario</Select.Option>
+        </Select>
+      </Form.Item>
+      <Button className="register-form__button boton">Agregar</Button>
+    </Form>
+  );
 };
