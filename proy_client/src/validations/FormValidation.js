@@ -1,12 +1,13 @@
+import "../App.scss"
 export function minLengthValidation(inputData, minLength) {
-  const { value } = minLength;
+  const { value } = inputData;
   removeClassErrorSuccess(inputData);
   if (value.length >= minLength) {
     inputData.classList.add("success");
     return true;
   } else {
     inputData.classList.add("error");
-    return true;
+    return false;
   }
 }
 
@@ -15,9 +16,9 @@ export function removeClassErrorSuccess(inputData) {
   inputData.classList.remove("error");
 }
 export function emailValidation(inputData) {
-  // eslint-disable-next-Line no-useless-escape
-  const emailValid =
-    /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/;
+  
+  const emailValid =// eslint-disable-next-line
+  /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/;
   const { value } = inputData;
   removeClassErrorSuccess(inputData);
   const resultValidation = emailValid.test(value);

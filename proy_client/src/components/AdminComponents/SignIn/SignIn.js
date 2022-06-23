@@ -10,6 +10,7 @@ import jwtDecode from "jwt-decode";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../../api/constants";
 import { getAccessToken } from "../../../api/auth";
 import { Route, Routes } from "react-router-dom";
+import { userLogued } from "../../../api/auth";
 
 export default function AdminSignIn() {
   const [inputs, setInputs] = useState({
@@ -61,6 +62,7 @@ export default function AdminSignIn() {
     console.log("Estoy en el login");
     const nameUserVal = inputs.name_user;
     const passwordVal = inputs.password;
+
     if (!nameUserVal || !passwordVal) {
       notification["error"]({
         message: "Todos los campos son obligatorios",
@@ -70,23 +72,21 @@ export default function AdminSignIn() {
       const result = await signInApi(inputs);
       if (!result.user_creado) {
         notification["error"]({
-          message: "Usuario no se ha podido encontrar ! " + result.message,
+          message: "Usuario no se ha podido encontrar ! ",
         });
       } else {
-        console.log(result);
         const accessTokenVal = result.token.accessToken;
         const refreshTokenVal = result.token.refreshToken;
         const usuario = jwtDecode(accessTokenVal);
-        console.log(usuario);
         localStorage.setItem(ACCESS_TOKEN, accessTokenVal);
         localStorage.setItem(REFRESH_TOKEN, refreshTokenVal);
-
+        userLogued();
         notification["info"]({
           message: "Inicio de sesion exitoso!",
         });
-        resetForm();
       }
       window.location.href = "/admin";
+      resetForm();
     }
   };
 
@@ -132,7 +132,7 @@ export default function AdminSignIn() {
           rules={[
             {
               required: true,
-              message: "Please input your username!",
+              message: "Por favor ingrese su correo!",
             },
           ]}
         >
@@ -159,7 +159,6 @@ export default function AdminSignIn() {
           <Input.Password
             name="password"
             className="campo"
-            onChange={inputValidation}
             value={inputs.password}
           />
         </Form.Item>

@@ -6,7 +6,7 @@ $success:#7de280;
 $error:#d24242;
 $error-light:#f2b4b4;
 $background-success:$success;
-$background-error:#d24242;
+$background-error:$error;
 
 .ant-layout-footer {
     width: 100%;
@@ -85,7 +85,7 @@ body{
 }
 
 .img {
-    width: 50px;
+    width: 150px;
     border-radius: 15em;
 }
 

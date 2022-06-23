@@ -1,123 +1,163 @@
 import React, { useState } from "react";
-import { Form, Input, Select, Row, Col, notification, Button } from "antd";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { signInApi } from "../../../../api/user";
+import { Form, Input, Select, Button, Row, Col, notification } from "antd";
+import { UserAddOutlined } from "@ant-design/icons";
+import { signUpAdmin } from "../../../../api/user";
 import { getAccessToken } from "../../../../api/auth";
 import "./AddUser.scss";
-import { message } from "antd";
 
 export default function EditUser(props) {
-  const { setVisibleModal, setReloadUser } = props;
+  const { setIsVisibleModal, setReloadUsers } = props;
   const [userData, setUserData] = useState({});
-  const accessToken = getAccessToken();
+
   const addUser = (event) => {
-    event.preventDefault(); //capturar valores
-    //   Validar si el usuario no existe
-    !userData.name_user ||
-    !userData.lastname ||
-    !userData.email ||
-    !userData.password ||
-    !userData.rol ||
-    !userData.name ||
-    !userData.repeatPassword
-      ? notification["error"]({
-          message: "Todos los campos son obligatorios",
+    event.preventDefault();
+
+    if (
+      !userData.name_user ||
+      !userData.lastname ||
+      !userData.role ||
+      !userData.email ||
+      !userData.password ||
+      !userData.repeatPassword
+    ) {
+      notification["error"]({
+        message: "Todos los campos son obligatorios.",
+      });
+    } else if (userData.password !== userData.repeatPassword) {
+      notification["error"]({
+        message: "Las contraseñas tienen que ser iguale.",
+      });
+    } else {
+      const accesToken = getAccessToken();
+
+      signUpAdmin(accesToken, userData)
+        .then((response) => {
+          notification["success"]({
+            message: response,
+          });
+          setIsVisibleModal(false);
+          setReloadUsers(true);
+          setUserData({});
         })
-      : userData.password !== userData.repeatPassword
-      ? // Validamos si el campo password coincide con repeatPassword
-        notification["error"]({
-          message: "Las contraseñas no coinciden",
-        })
-      : //Cuando las contraseñas si coinciden debemos consultar el accessToken y el payload
-        signInApi(accessToken, userData)
-          .then((result) => {
-            notification["success"]({
-              message: result,
-            });
-            setVisibleModal(false);
-            setReloadUser(true); // cargar nuevamente la pagina
-            setUserData({});
-          })
-          .catch((err) => {
-            notification["error"]({
-              message: err,
-            });
-          }); // <-- posible error
+        .catch((err) => {
+          notification["error"]({
+            message: err,
+          });
+        });
+    }
   };
+
   return (
-    <div>
+    <div className="add-user-form">
       <AddForm
         userData={userData}
         setUserData={setUserData}
         addUser={addUser}
-      ></AddForm>
+      />
     </div>
   );
 }
 
 const AddForm = (props) => {
   const { userData, setUserData, addUser } = props;
-  const { Option } = Select; //trabajar con un select o lista desplegable
-  //crear el formulario completo
+  const { Option } = Select;
+
   return (
-    <Form onSubmit={NaN}>
-      <Form.Item>
-        <span className="check">Nombres</span>
-        <Input
-          prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          type="text"
-          name="name_user"
-          placeholder="Nombres"
-          className="register-form__input campo"
-        />
+    <Form className="form-add">
+      <Row gutter={24}>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              prefix={<UserAddOutlined />}
+              placeholder="Nombre"
+              value={userData.name_user}
+              onChange={(e) =>
+                setUserData({ ...userData, name_user: e.target.value })
+              }
+            />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              prefix={<UserAddOutlined />}
+              placeholder="Apellidos"
+              value={userData.lastname}
+              onChange={(e) =>
+                setUserData({ ...userData, lastname: e.target.value })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Row gutter={24}>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              prefix={<UserAddOutlined />}
+              placeholder="Correo electronico"
+              value={userData.email}
+              onChange={(e) =>
+                setUserData({ ...userData, email: e.target.value })
+              }
+            />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Select
+              placeholder="Selecióna un rol"
+              onChange={(e) => setUserData({ ...userData, role: e })}
+              value={userData.role}
+            >
+              <Option value="admin">Administrador</Option>
+              <Option value="revisor">Revisor</Option>
+              <Option value="coordinator">Coordinador</Option>
+            </Select>
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Row gutter={24}>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              prefix={<UserAddOutlined />}
+              type="password"
+              placeholder="Contraseña"
+              value={userData.password}
+              onChange={(e) =>
+                setUserData({ ...userData, password: e.target.value })
+              }
+            />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          <Form.Item>
+            <Input
+              prefix={<UserAddOutlined />}
+              type="password"
+              placeholder="Repetir contraseña"
+              value={userData.repeatPassword}
+              onChange={(e) =>
+                setUserData({ ...userData, repeatPassword: e.target.value })
+              }
+            />
+          </Form.Item>
+        </Col>
+      </Row>
+
+      <Form.Item tooltip="Crear Usuario">
+        <Button
+          type="primary"
+          htmlType="submit"
+          className="btn-submit"
+          onClick={addUser}
+        >
+          Crear Usuario
+        </Button>
       </Form.Item>
-      <Form.Item>
-        <span className="check">Apellidos</span>
-        <Input
-          prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          type="text"
-          name="lastname"
-          placeholder="Apellido"
-          className="register-form__input campo"
-        />
-      </Form.Item>
-      <Form.Item>
-        <span className="check">Email</span>
-        <Input
-          prefix={<UserOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          type="email"
-          name="email"
-          placeholder="Correo electronico"
-          className="register-form__input campo"
-        />
-      </Form.Item>
-      <Form.Item>
-        <span className="check">Contraseña</span>
-        <Input
-          prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          className="register-form__input campo"
-        />
-      </Form.Item>
-      <Form.Item>
-        <span className="check">Repetir contraseña</span>
-        <Input
-          prefix={<LockOutlined style={{ color: "rgba(0,0,0,.25)" }} />}
-          type="password"
-          name="repeatPassword"
-          placeholder="Repetir contraseña"
-          className="register-form__input campo"
-        />
-      </Form.Item>
-      <Form.Item label="Select" name={"rol"}>
-        <Select>
-          <Select.Option value="administrador">Administrador</Select.Option>
-          <Select.Option value="usuario">Usuario</Select.Option>
-        </Select>
-      </Form.Item>
-      <Button className="register-form__button boton">Agregar</Button>
     </Form>
   );
 };

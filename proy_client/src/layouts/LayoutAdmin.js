@@ -18,20 +18,23 @@ export default function LayoutAdmin(props) {
   const accessToken = getAccessToken();
 
   if (!user && !isLoading) {
-    console.log(user);// === None, son equivalentes
-    console.log(isLoading);// === None, son equivalentes
     return (
-      <>
+      
         <AdminSignIn>
           <Routes>
             <Route path="/admin/login" element={<AdminSignIn />} />
           </Routes>
         </AdminSignIn>
-      </>
+      
     );
   }
 
   if (user && !isLoading) {//Si existe el usuario y no hay nada que cargar
+    console.log("Entro aqui");
+    console.log(user); 
+    console.log(isLoading); 
+    console.log(accessToken); 
+    console.log(refreshToken); 
     return (
       <Layout>
         <MenuSider menuCollapsed={menuCollapsed} />

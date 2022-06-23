@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Col, Card } from "antd";
 import img_1 from "../imgs/modulo_1.png";
 import img_2 from "../imgs/modulo_2.png";
-import img_3 from "../imgs/modulo_3.png";
+import img_3 from "../imgs/modulo_3.svg";
 import { NavLink } from "react-router-dom";
 const { Meta } = Card;
 

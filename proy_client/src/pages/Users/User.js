@@ -2,41 +2,35 @@ import React, { useState, useEffect } from "react";
 import "./User.scss";
 import { getActiveUsers } from "../../api/user";
 import { getAccessToken } from "../../api/auth";
+import ListUsers from "../../components/AdminComponents/Users/ListUsers/ListUser";
 
-export default function User() {
-  // const [users, setUsers] = useState([]);
-  // const token = getAccessToken();
-  // console.log(users);
-
-  // useEffect(() => {
-  //   getUsers(token).then((response) => {
-  //     setUsers(response);
-  //   });
-  // }, [token]);
-
-  // return (
-  //   <div>
-  //     <h1>Lista de usuarios</h1>
-  //   </div>
-  // );
-  const [activeUsers, setActiveUsers] = useState([]);
-  const [inactiveUsers, setInactiveUser] = useState([]);
+export default function Users() {
+  const [usersActive, setUsersActive] = useState([]);
+  const [usersInactive, setUsersInactive] = useState([]);
+  const [reloadUsers, setReloadUsers] = useState(false);
   const token = getAccessToken();
-  console.log(
-    "Usuario activo",
-    activeUsers,
-    " Usuario inactivo ",
-    inactiveUsers
-  );
 
   useEffect(() => {
+    /* Validamos el active que es el segundo param
+    si es true carga un object con usuarios activos */
     getActiveUsers(token, true).then((response) => {
-      setActiveUsers(response.users);
+      setUsersActive(response.users);
     });
+    /* Validamos el active que es el segundo param
+    si es false carga un object con usuarios inactivos */
     getActiveUsers(token, false).then((response) => {
-      setInactiveUser(response.users);
+      setUsersInactive(response.users);
     });
-  }, [token]);
+    setReloadUsers(false);
+  }, [token, reloadUsers]);
 
-  return <div>{/* <h1>Lista de usuarios</h1> */}</div>;
+  return (
+    <div>
+      <ListUsers
+        usersActive={usersActive}
+        usersInactive={usersInactive}
+        setReloadUsers={setReloadUsers}
+      />
+    </div>
+  );
 }

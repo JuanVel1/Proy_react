@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Row, Col, Image } from "antd";
-import img_3 from "./imgs/modulo_3.png";
+import img_3 from "./imgs/modulo_3.svg";
 import { LeftSquareOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
@@ -17,7 +17,7 @@ export default function Modulo_3() {
         </span>
       </Col>
       <Col span={8}>
-        <Image className="img" width={200} src={img_3} />
+        <Image className="img" src={img_3} />
       </Col>
       <Col span={8}>
         <Link to="/admin">

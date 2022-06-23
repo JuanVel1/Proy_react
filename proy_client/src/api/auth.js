@@ -1,6 +1,14 @@
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "./constants";
 import jwtDecode from "jwt-decode";
 import { basepath, apiVersion } from "./config";
+
+export function userLogued(){
+  const accessToken = localStorage.getItem(ACCESS_TOKEN);
+  const {user_name, lastname, role} = jwtDecode(accessToken)
+  return {name : user_name, lastname : lastname, ROLE : role}
+}
+
+
 export function getAccessToken() {
   const accessToken = localStorage.getItem(ACCESS_TOKEN);
   if (!accessToken || accessToken === "null") return null;

@@ -5,6 +5,7 @@ const { API_VERSION } = require("./config");
 const userRoutes = require("./src/routes/user");
 const cors = require("cors");
 const  AuthRoutes  = require("./src/routes/user");
+const subjectsRoutes = require("./src/routes/subject")
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
@@ -20,7 +21,10 @@ app.use((req, res, next) => {
   res.header("Allow", "GET, POST, OPTIONS, PUT,DELETE");
   next()
 });
+
 app.use(`/api/${API_VERSION}`, userRoutes);
 app.use(`/api/${API_VERSION}`, AuthRoutes);
+// subjectsRoutes(app)
+app.use(`/api/${API_VERSION}`, subjectsRoutes)
 
 module.exports = app;
